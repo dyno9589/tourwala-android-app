@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">TourWala</string>
+    <string name="app_logo">app_logo</string>
+    <string name="logoname">logo_name</string>
+    <string name="idforlogoname">Id_for_logo_name</string>
+    <string name="taglineoftourwala">A Smart Tourist Guide</string>
+    <string name="Welcome">Welcome</string>
+    <string name="SignUp_to_start_your_new_Journey">SignUp to start your new Journey</string>
+</resources>

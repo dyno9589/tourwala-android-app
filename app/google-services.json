@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "109341877335",
+    "project_id": "tourwala-a5393",
+    "storage_bucket": "tourwala-a5393.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:109341877335:android:a3b63c44558d7db2c56f12",
+        "android_client_info": {
+          "package_name": "com.botarmy.tourwala"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "109341877335-ggken9190u9lcsaeehga7fme2vblpd60.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjGl-rR6t2ssIk7j1DcCM4xfrhi9s3Dfk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "109341877335-ggken9190u9lcsaeehga7fme2vblpd60.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
