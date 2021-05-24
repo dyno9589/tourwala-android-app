@@ -22,7 +22,7 @@ public class register_form extends AppCompatActivity {
 
     //variables
 
-    DatabaseHelper db;
+    DatabaseHelper db;   //creating variable for Database helper
 
     Button calllogin;
     Button login_btn;
@@ -61,7 +61,7 @@ public class register_form extends AppCompatActivity {
         e2 =(TextInputLayout)findViewById(R.id.pass);
         e3 =(TextInputLayout)findViewById(R.id.cpass);
         signupbtn =(Button)findViewById(R.id.sign_up_btn);
-        login_btn =(Button)findViewById(R.id.already_have_account_login);
+//        login_btn =(Button)findViewById(R.id.already_have_account_login);
 
 
         //Save data in firebase on button click
