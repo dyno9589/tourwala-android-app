@@ -8,49 +8,166 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 
 
+//public class DatabaseHelper extends SQLiteOpenHelper {
+//
+//    public DatabaseHelper(Context context) {
+//        super(context,"Login.db", null, 1);
+//    }
+//
+//    @Override
+//    public void onCreate(SQLiteDatabase db) {
+//        db.execSQL("Create table user(email text primary key,password text)");
+//
+//    }
+//
+//    @Override
+//    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+//        db.execSQL("drop table if exists user");
+//
+//    }
+//
+//    //inserting in database
+//    public boolean insert(String email,String password){
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        ContentValues contentValues= new ContentValues();
+//        contentValues.put("email",email);
+//        contentValues.put("password",password);
+//        long ins = db.insert("user",null,contentValues);
+//        if(ins == -1) return false;
+//        else return true;
+//    }
+//
+//    //checking if mail exists;
+//    public Boolean chkemail(String email){
+//        SQLiteDatabase db = this.getReadableDatabase();
+//        Cursor cursor = db.rawQuery("Select * from user where email=?",new String[]{email});
+//        if(cursor.getCount()>0) return false;
+//        else return true;
+//    }
+//
+//    //checking the email and password;
+//    public Boolean emailpassword(String email, String password){
+//        SQLiteDatabase db = this.getReadableDatabase();
+//        Cursor cursor = db.rawQuery("select * from user where email=? and password=?",new String[]{email,password});
+//        if(cursor.getCount()>0) return true;
+//        else return false;
+//    }
+//
+//}
+
+// Option 2nd
+//public class DatabaseHelper extends SQLiteOpenHelper {
+//
+//    public DatabaseHelper(Context context) {
+//        super(context, "Login.db", null, 1);
+//    }
+//
+//    @Override
+//    public void onCreate(SQLiteDatabase db) {
+//        db.execSQL("Create table user(email text primary key,password text)");
+//    }
+//
+//    @Override
+//    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+//        db.execSQL("drop table if exists user");
+//    }
+//
+//    //inserting in database
+//    public boolean insert(String email, String password) {
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        ContentValues contentValues = new ContentValues();
+//        contentValues.put("email", email);
+//        contentValues.put("password", password);
+//        long ins = db.insert("user", null, contentValues);
+//        db.close();
+//
+//        if (ins == -1) return false;
+//        else return true;
+//    }
+//
+//    //checking if mail exists;
+//    public Boolean chkemail(String email) {
+//        boolean flag;
+//        SQLiteDatabase db = this.getReadableDatabase();
+//        Cursor cursor = db.rawQuery("Select * from user where email=?", new String[]{email});
+//        if (cursor != null && cursor.getCount() > 0) flag = false;
+//        else flag = true;
+//
+//        if (cursor != null && !cursor.isClosed())
+//            cursor.close();
+//
+//        db.close();
+//        return flag;
+//    }
+//
+//    //checking the email and password;
+//    public Boolean emailpassword(String email, String password) {
+//        SQLiteDatabase db = this.getReadableDatabase();
+//        Cursor cursor = db.rawQuery("select * from user where email=? and password=?", new String[]{email, password});
+//        if (cursor.getCount() > 0) return true;
+//        else return false;
+//    }
+//}
+
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     public DatabaseHelper(Context context) {
-        super(context,"Login.db", null, 1);
+        super(context, "Login.db", null, 1);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("Create table user(email text primary key,password text)");
-
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("drop table if exists user");
-
     }
 
     //inserting in database
-    public boolean insert(String email,String password){
+    public boolean insert(String email, String password) {
         SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues= new ContentValues();
-        contentValues.put("email",email);
-        contentValues.put("password",password);
-        long ins = db.insert("user",null,contentValues);
-        if(ins == -1) return false;
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("email", email);
+        contentValues.put("password", password);
+        long ins = db.insert("user", null, contentValues);
+        db.close();
+
+        if (ins == -1) return false;
         else return true;
     }
 
     //checking if mail exists;
-    public Boolean chkemail(String email){
+    public Boolean chkemail(String email) {
+        boolean flag;
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("Select * from user where email=?",new String[]{email});
-        if(cursor.getCount()>0) return false;
-        else return true;
+        Cursor cursor = db.rawQuery("Select * from user where email=?", new String[]{email});
+        if (cursor != null && cursor.getCount() > 0) flag = false;
+        else flag = true;
+
+        if (cursor != null && !cursor.isClosed())
+            cursor.close();
+
+        db.close();
+        return flag;
     }
 
     //checking the email and password;
-    public Boolean emailpassword(String email, String password){
+    public Boolean emailpassword(String email, String password) {
+        boolean flag;
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("select * from user where email=? and password=?",new String[]{email,password});
-        if(cursor.getCount()>0) return true;
-        else return false;
-    }
+        Cursor cursor = db.rawQuery("select * from user where email=? and password=?", new String[]{email, password});
+        if (cursor != null && cursor.getCount() > 0) flag = true;
+        else flag = false;
 
+        if (cursor != null && !cursor.isClosed())
+            cursor.close();
+
+        db.close();
+        return flag;
+    }
 }
+
+
+
