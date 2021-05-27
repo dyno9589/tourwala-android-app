@@ -31,12 +31,13 @@ public class register_form extends AppCompatActivity {
     TextView logoText, sloganText;
 //    TextInputLayout fullname;
 //    TextInputLayout username;
+    TextInputLayout  e0;
     TextInputLayout  e1;
 //    TextInputLayout phone;
     TextInputLayout e2;
     TextInputLayout e3;
 
-    FirebaseDatabase rootNode;
+//    FirebaseDatabase rootNode;
     DatabaseReference reference;
 
     @Override
@@ -57,6 +58,7 @@ public class register_form extends AppCompatActivity {
         sloganText = findViewById(R.id.slogan_name_for_logo_name);
 //        fullname = findViewById(R.id.full_name);
 //        username = findViewById(R.id.username);
+        e0 =(TextInputLayout)findViewById(R.id.username);
         e1 =(TextInputLayout)findViewById(R.id.email);
         e2 =(TextInputLayout)findViewById(R.id.pass);
         e3 =(TextInputLayout)findViewById(R.id.cpass);
@@ -78,19 +80,20 @@ public class register_form extends AppCompatActivity {
                     //Get all the values in string
 //                String name = fullname.getEditText().getText().toString();
 //                String usernames = username.getEditText().getText().toString();
+                    String s0 = e0.getEditText().getText().toString();
                     String s1 = e1.getEditText().getText().toString();
 //                String phoneNo = phone.getEditText().getText().toString();
 //                Integer phoneno=Integer.parseInt(phoneNo);
                     String s2 = e2.getEditText().getText().toString();
                     String s3 = e3.getEditText().getText().toString();
 
-                    if (s1.equals("") || s2.equals("") || s3.equals("")) {
+                    if (s0.equals("") || s1.equals("") || s2.equals("") || s3.equals("")) {
                         Toast.makeText(getApplicationContext(), "Fields are empty", Toast.LENGTH_SHORT).show();
                     } else {
                         if (s2.equals(s3)) {
                             Boolean chkemail = db.chkemail(s1);
                             if (chkemail == true) {
-                                Boolean insert = db.insert(s1, s2);
+                                Boolean insert = db.insert(s0,s1, s2);
                                 if (insert == true) {
                                     Toast.makeText(getApplicationContext(), "Registered Successfully", Toast.LENGTH_SHORT).show();
                                     Intent movetologin = new Intent(register_form.this,login_form.class);
@@ -116,17 +119,17 @@ public class register_form extends AppCompatActivity {
 //            @Override
 //            public void onClick(View v) {
 //                Intent intent = new Intent(register_form.this, login_form.class);
-//                Pair[] pairs = new Pair[7];
+//                Pair[] pairs = new Pair[8];
 //                pairs[0] = new Pair<View, String>(image, "logo_image");
 //                pairs[1] = new Pair<View, String>(logoText, "logo_text");
 //                pairs[2] = new Pair<View, String>(sloganText, "logo_desc");
 ////                pairs[3] = new Pair<View,                                   String>(fullname, "fullname_tran");
-////                pairs[4] = new Pair<View, String>(username, "username_tran");
-//                pairs[3] = new Pair<View, String>(email, "email_tran");
+//                pairs[3] = new Pair<View, String>(e0, "username_tran");
+//                pairs[4] = new Pair<View, String>(e1, "email_tran");
 ////                pairs[6] = new Pair<View, String>(phone, "phone_tran");
-//                pairs[4] = new Pair<View, String>(password, "password_tran");
-//                pairs[5] = new Pair<View, String>(cnfpassword, "cnfpassword_tran");
-//                pairs[6] = new Pair<View, String>(login_btn, "login_signup_tran");
+//                pairs[5] = new Pair<View, String>(e2, "password_tran");
+//                pairs[6] = new Pair<View, String>(e3, "cnfpassword_tran");
+//                pairs[7] = new Pair<View, String>(login_btn, "login_signup_tran");
 //
 //                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 //                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(register_form.this, pairs);

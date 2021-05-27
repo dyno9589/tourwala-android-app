@@ -5,7 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
+import android.view.View;
+import android.widget.TextView;
 
 
 //public class DatabaseHelper extends SQLiteOpenHelper {
@@ -117,18 +118,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("Create table user(email text primary key,password text)");
+        db.execSQL("Create table user(username text,email text primary key,password text)");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("drop table if exists user");
+        onCreate(db);
     }
 
     //inserting in database
-    public boolean insert(String email, String password) {
+    public boolean insert(String username, String email, String password) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
+        contentValues.put("username",username);
         contentValues.put("email", email);
         contentValues.put("password", password);
         long ins = db.insert("user", null, contentValues);
@@ -167,6 +170,35 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return flag;
     }
+
+    //fetching username for homepage
+//    public Boolean chkwelcome(String username) {
+//        boolean flag;
+//        SQLiteDatabase db = this.getReadableDatabase();
+//        Cursor cursor = db.rawQuery("Select username from user where email=?", new String[]{username});
+////        StringBuffer buffer = new StringBuffer();
+//        if (cursor != null && cursor.getCount() > 0) flag = false;
+//        else flag = true;
+//
+//        if (cursor != null && !cursor.isClosed())
+//            cursor.close();
+//
+//        db.close();
+////        while (cursor.moveToNext()) {
+////            buffer.append("username" + cursor.getString(0));
+//            return flag;
+//
+//        }
+
+        public Cursor chkwelcome(String email){
+
+        SQLiteDatabase db =this.getWritableDatabase();
+        String qry= "select * from user where email="+email;
+        Cursor crs =db.rawQuery(qry,null);
+        db.close();
+        return crs;
+
+        }
 }
 
 

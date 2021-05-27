@@ -6,4 +6,8 @@
     <string name="taglineoftourwala">A Smart Tourist Guide</string>
     <string name="Welcome">Welcome</string>
     <string name="SignUp_to_start_your_new_Journey">SignUp to start your new Journey</string>
+    <string name="Welcometv">Welcome</string>
+    <string name="navigation_drawer_open">Open Navigation drawer</string>
+    <string name="navigation_drawer_close">Close Navigation drawer</string>
+
 </resources>

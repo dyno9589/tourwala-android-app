@@ -14,15 +14,21 @@
         </activity>
         <activity
             android:name=".home"
-            android:label="Home" />
-        <activity android:name=".register_form">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:theme="@style/AppTheme.NoActionBar">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
         </activity>
-        <activity android:name=".login_form"></activity>
+
+        <activity android:name=".register_form">
+
+        </activity>
+        <activity android:name=".login_form">
+
+        </activity>
     </application>
 
 </manifest>

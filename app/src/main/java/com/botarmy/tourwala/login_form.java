@@ -68,6 +68,8 @@ public class  login_form extends AppCompatActivity {
 
                 if(chkemailpass==true){
                     Toast.makeText(getApplicationContext(),"Successfully Login",Toast.LENGTH_SHORT).show();
+                    Intent movetohome = new Intent(login_form.this,home.class);
+                    startActivity(movetohome);
                 }
                 else {
                     Toast.makeText(getApplicationContext(), "Incorrect Email or Password", Toast.LENGTH_SHORT).show();
