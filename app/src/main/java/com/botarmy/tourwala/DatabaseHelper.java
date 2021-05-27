@@ -171,7 +171,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return flag;
     }
 
-    //fetching username for homepage
 //    public Boolean chkwelcome(String username) {
 //        boolean flag;
 //        SQLiteDatabase db = this.getReadableDatabase();
@@ -190,7 +189,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 //
 //        }
 
-        public Cursor chkwelcome(String email){
+    //fetching username for homepage
+
+    public Cursor chkwelcome(String email){
 
         SQLiteDatabase db =this.getWritableDatabase();
         String qry= "select * from user where email="+email;

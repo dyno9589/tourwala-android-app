@@ -60,7 +60,7 @@ public class home extends AppCompatActivity implements NavigationView.OnNavigati
 
         navigationView.setNavigationItemSelectedListener(this);
 
-
+/*-------------------------------------------------------Here I am getting issue----------------------------------------------------------------------------------------------------*/
 //        db = new DatabaseHelper(this);
 //            Cursor result = db.chkwelcome(textViewWelcome.getText().toString());
 //
