@@ -4,9 +4,17 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ActivityOptions;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Pair;
 import android.view.View;
 import android.view.WindowManager;
@@ -15,6 +23,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.botarmy.tourwala.Utility.NetworkChangeListener;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -26,6 +35,8 @@ import com.google.firebase.database.ValueEventListener;
 public class  login_form extends AppCompatActivity {
 
     DatabaseHelper db;
+
+    NetworkChangeListener networkChangeListener = new NetworkChangeListener();
 
     Button callSignUp;
     Button signup_btn;
@@ -54,13 +65,26 @@ public class  login_form extends AppCompatActivity {
         e1 =(TextInputLayout) findViewById(R.id.email_login_page);
         e2 =(TextInputLayout) findViewById(R.id.password_login_page);
 
-//        signup_btn = findViewById(R.id.new_user_signup_btn);
+        signup_btn = findViewById(R.id.new_user_signup_btn);
         login_btn =(Button) findViewById(R.id.login_btn);
+
+        signup_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent movetoregisterpage = new Intent(login_form.this,register_form.class);
+                startActivity(movetoregisterpage);
+            }
+        });
 
 
         login_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+//                if(!isConnected(login_form.this)){
+//                    showCustomDialog();
+//                }
+
                 String email = e1.getEditText().getText().toString();
                 String password =e2.getEditText().getText().toString();
 
@@ -69,7 +93,9 @@ public class  login_form extends AppCompatActivity {
                 if(chkemailpass==true){
                     Toast.makeText(getApplicationContext(),"Successfully Login",Toast.LENGTH_SHORT).show();
                     Intent movetohome = new Intent(login_form.this,home.class);
+                    movetohome.putExtra("Email", email);
                     startActivity(movetohome);
+                    finish();
                 }
                 else {
                     Toast.makeText(getApplicationContext(), "Incorrect Email or Password", Toast.LENGTH_SHORT).show();
@@ -101,7 +127,58 @@ public class  login_form extends AppCompatActivity {
     }
 
 
-//    private Boolean validateUsername() {
+
+    //Check internet connection
+    private boolean isConnected(login_form login) {
+        ConnectivityManager connectivityManager = (ConnectivityManager) login.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo wifiConn = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        NetworkInfo mobileConn = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+
+        if((wifiConn != null && wifiConn.isConnected()) || (mobileConn != null && mobileConn.isConnected())){
+            return true;
+        }
+        else {
+            return false;
+        }
+
+    }
+    //show custom dialog if the internet is not availabe;
+    private void showCustomDialog() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(login_form.this);
+        builder.setMessage("PLease connect to the internet to proceed further")
+                .setCancelable(false)
+                .setPositiveButton("Connect", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
+                    }
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                        finish();
+                    }
+                });
+
+    }
+
+    @Override
+    protected void onStart() {
+        IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(networkChangeListener,filter);
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        unregisterReceiver(networkChangeListener);
+        super.onStop();
+    }
+
+    //    private Boolean validateUsername() {
 //        String val = username.getEditText().getText().toString();
 //
 //        if (val.isEmpty()) {

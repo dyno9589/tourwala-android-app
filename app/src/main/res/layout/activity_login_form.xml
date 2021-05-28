@@ -99,7 +99,6 @@
             android:text="Login"
             android:textColor="#fff"
             android:transitionName="button_tran"
-            android:onClick="btn_login_form"
             />
 
         <Button

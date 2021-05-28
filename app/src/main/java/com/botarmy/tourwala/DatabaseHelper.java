@@ -191,15 +191,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     //fetching username for homepage
 
-    public Cursor chkwelcome(String email){
+    public String chkwelcome(String email) {
+        String userName = "";
 
-        SQLiteDatabase db =this.getWritableDatabase();
-        String qry= "select * from user where email="+email;
-        Cursor crs =db.rawQuery(qry,null);
-        db.close();
-        return crs;
+        try {
+            SQLiteDatabase db = this.getReadableDatabase();
+            Cursor cursor = db.rawQuery("select * from user where email=?", new String[]{email});
+            if (cursor != null && cursor.getCount() > 0) {
+                if (cursor.moveToFirst())
+                    userName = cursor.getString(0);
+            }
 
+            if (cursor != null && !cursor.isClosed())
+                cursor.close();
+
+            db.close();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
+        return userName;
+    }
 }
 
 

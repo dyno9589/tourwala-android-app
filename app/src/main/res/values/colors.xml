@@ -10,6 +10,8 @@
     <color name="grey">#B8B7B7</color>
     <color name="hint_color">#1E88E5</color>
 
+
+    <color name="bdibeo">#D81B60</color>
     <color name="colorPrimary">#51d8c7</color>
     <color name="colorPrimaryDark">#51d8c7</color>
     <color name="colorAccent">#FFFFFF</color>
@@ -154,5 +156,13 @@
     <color name="medium_blue">#0000CD</color>
     <color name="dark_blue">#00008B</color>
     <color name="navy">#000080</color>
+
+    //check internet colors
+    <color name="colorOnPrimaryDemo">#fff</color>
+    <color name="colorPrimaryDemo">#554911</color>
+    <color name="colorPrimaryLightDemo">#EEE3AB</color>
+    <color name="colorAccentDemo">#665815</color>
+
+
 
 </resources>

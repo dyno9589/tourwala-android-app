@@ -4,16 +4,23 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ActivityOptions;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.Settings;
 import android.util.Pair;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,7 +33,8 @@ public class MainActivity extends AppCompatActivity {
     //variables
     Animation topAnim, bottomAnim;
     ImageView image;
-    TextView logo,slogan;
+    TextView logo, slogan;
+    Button login, signup, skip;
 
 
     @Override
@@ -34,40 +42,83 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         getSupportActionBar().hide();
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
 
         //Animations
-        topAnim = AnimationUtils.loadAnimation(this,R.anim.top_animation);
-        bottomAnim = AnimationUtils.loadAnimation(this,R.anim.bottom_animation);
+        topAnim = AnimationUtils.loadAnimation(this, R.anim.top_animation);
+        bottomAnim = AnimationUtils.loadAnimation(this, R.anim.bottom_animation);
 
         //Hooks
         image = findViewById(R.id.imageView3);
+
         logo = findViewById(R.id.textView_logo_name);
         slogan = findViewById(R.id.tagline_for_tourwala_text);
 
+        login = findViewById(R.id.login_btn_splash_screen);
+        signup = findViewById(R.id.sign_up_btn_splash_screen);
+        skip = findViewById(R.id.skip_btn_splash_screen);
+
         image.setAnimation(topAnim);
+
         logo.setAnimation(bottomAnim);
         slogan.setAnimation(bottomAnim);
+        login.setAnimation(bottomAnim);
+        signup.setAnimation(bottomAnim);
 
-        new Handler().postDelayed(new Runnable(){
+
+//        new Handler().postDelayed(new Runnable(){
+//            @Override
+//            public void run() {
+//                Intent intenth = getIntent();
+//                Pair[] pairs = new Pair[2];
+//                pairs[0] = new Pair<View, String>(image,"logo_image");
+//                pairs[1] = new Pair<View, String>(logo,"logo_text");
+//
+//
+//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//                    ActivityOptions options =ActivityOptions.makeSceneTransitionAnimation(MainActivity.this,pairs);
+//                    startActivity(intenth,options.toBundle());
+//
+//                }
+//
+//            }
+//        },SPLASH_SCREEN);
+        onBackPressed();
+
+        login.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void run() {
+            public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, login_form.class);
-                Pair[] pairs = new Pair[2];
-                pairs[0] = new Pair<View, String>(image,"logo_image");
-                pairs[1] = new Pair<View, String>(logo,"logo_text");
+                startActivity(intent);
 
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    ActivityOptions options =ActivityOptions.makeSceneTransitionAnimation(MainActivity.this,pairs);
-                    startActivity(intent,options.toBundle());
-                    onBackPressed();
-                }
 
             }
-        },SPLASH_SCREEN);
+        });
+
+        signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, register_form.class);
+                startActivity(intent);
 
 
+            }
+        });
+
+        skip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                if (!isConnected(MainActivity.this)) {
+//                    showCustomDialog();
+//                }
+                Intent intent = new Intent(MainActivity.this, home.class);
+                startActivity(intent);
+                finish();
+
+
+            }
+        });
 
 
 //        new Handler().postDelayed(new Runnable() {
@@ -79,6 +130,7 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
     }
+
     boolean doubleBackToExitPressedOnce = false;
 
     @Override
@@ -95,12 +147,48 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void run() {
-                doubleBackToExitPressedOnce=false;
+                doubleBackToExitPressedOnce = false;
             }
         }, 2000);
     }
 
-    public void btn_login_form(View view) {
-        startActivity(new Intent(getApplicationContext(),login_form.class));
-    }
+
+
+
+    //show custom dialog if the internet is not availabe;
+//    private void showCustomDialog() {
+//
+//        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+//        builder.setMessage("PLease connect to the internet to proceed further")
+//                .setCancelable(false)
+//                .setPositiveButton("Connect", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
+//                    }
+//                })
+//                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+//                        finish();
+//                    }
+//                });
+//
+//    }
+//
+//    //Check internet connection
+//    private boolean isConnected(MainActivity main) {
+//        ConnectivityManager connectivityManager = (ConnectivityManager) main.getSystemService(Context.CONNECTIVITY_SERVICE);
+//
+//        NetworkInfo wifiConn = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+//        NetworkInfo mobileConn = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+//
+//        if ((wifiConn != null && wifiConn.isConnected()) || (mobileConn != null && mobileConn.isConnected())) {
+//            return true;
+//        } else {
+//            return false;
+//        }
+//
+//    }
 }

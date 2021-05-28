@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ActivityOptions;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Pair;
@@ -14,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.botarmy.tourwala.Utility.NetworkChangeListener;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -21,6 +24,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class register_form extends AppCompatActivity {
 
     //variables
+    NetworkChangeListener networkChangeListener = new NetworkChangeListener();
 
     DatabaseHelper db;   //creating variable for Database helper
 
@@ -115,31 +119,44 @@ public class register_form extends AppCompatActivity {
 
         }); // Register button method end
 
-//        calllogin.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(register_form.this, login_form.class);
-//                Pair[] pairs = new Pair[8];
-//                pairs[0] = new Pair<View, String>(image, "logo_image");
-//                pairs[1] = new Pair<View, String>(logoText, "logo_text");
-//                pairs[2] = new Pair<View, String>(sloganText, "logo_desc");
-////                pairs[3] = new Pair<View,                                   String>(fullname, "fullname_tran");
-//                pairs[3] = new Pair<View, String>(e0, "username_tran");
-//                pairs[4] = new Pair<View, String>(e1, "email_tran");
-////                pairs[6] = new Pair<View, String>(phone, "phone_tran");
-//                pairs[5] = new Pair<View, String>(e2, "password_tran");
-//                pairs[6] = new Pair<View, String>(e3, "cnfpassword_tran");
-//                pairs[7] = new Pair<View, String>(login_btn, "login_signup_tran");
-//
-//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        calllogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(register_form.this, login_form.class);
+                Pair[] pairs = new Pair[8];
+                pairs[0] = new Pair<View, String>(image, "logo_image");
+                pairs[1] = new Pair<View, String>(logoText, "logo_text");
+                pairs[2] = new Pair<View, String>(sloganText, "logo_desc");
+//                pairs[3] = new Pair<View,                                   String>(fullname, "fullname_tran");
+                pairs[3] = new Pair<View, String>(e0, "username_tran");
+                pairs[4] = new Pair<View, String>(e1, "email_tran");
+//                pairs[6] = new Pair<View, String>(phone, "phone_tran");
+                pairs[5] = new Pair<View, String>(e2, "password_tran");
+                pairs[6] = new Pair<View, String>(e3, "cnfpassword_tran");
+                pairs[7] = new Pair<View, String>(login_btn, "login_signup_tran");
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 //                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(register_form.this, pairs);
 //                    startActivity(intent, options.toBundle());
-//                }
-//
-//            }
-//        }); // Transition button method end
+                    startActivity(intent);
+                }
+
+            }
+        }); // Transition button method end
 
     } // On create method end
+    @Override
+    protected void onStart() {
+        IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(networkChangeListener,filter);
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        unregisterReceiver(networkChangeListener);
+        super.onStop();
+    }
 
 //    private Boolean validateName() {
 //        String val = fullname.getEditText().getText().toString();
