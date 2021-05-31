@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.Cursor;
@@ -27,7 +28,7 @@ import com.google.android.material.navigation.NavigationView;
 
 public class home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    //varibles
+    //variables
     NetworkChangeListener networkChangeListener = new NetworkChangeListener();
 
     DrawerLayout drawerLayout;
@@ -42,7 +43,8 @@ public class home extends AppCompatActivity implements NavigationView.OnNavigati
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        getSupportActionBar().hide();
-        setTitle(null);
+        setTitle("Home");
+
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_home);
 
@@ -61,7 +63,7 @@ public class home extends AppCompatActivity implements NavigationView.OnNavigati
         textViewWelcome=(TextView)findViewById(R.id.welcome);
 
         /*----------------------------Tool Bar-----------------------------*/
-
+//        toolbar.setVisibility(View.VISIBLE);
         setSupportActionBar(toolbar);
 
         /*----------------------------Navigation Drawer Menu-----------------------------*/

@@ -35,6 +35,7 @@
             android:background="#00008577"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
+            android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -44,7 +45,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
             android:layout_marginTop="15dp"
             android:text="Welcome user"
             android:textColor="@color/dim_gray"
@@ -58,7 +58,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
             android:layout_marginTop="0dp"
             android:text="Traveling"
             android:textColor="@color/dim_gray"
@@ -72,22 +71,21 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
             android:text="Start a new Journey"
             android:textColor="@color/dim_gray"
             app:layout_constraintEnd_toStartOf="@+id/imageView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
+
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="0dp"
             android:layout_height="160dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
+            android:contentDescription="ImageView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView"
             app:layout_constraintTop_toBottomOf="@+id/toolbar"
-            android:contentDescription="TODO"
             app:srcCompat="@drawable/tour_and_travel_logo" />
         <LinearLayout
             android:id="@+id/linearLayout"
@@ -113,20 +111,21 @@
                         android:id="@+id/textView3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/bus"
+                        android:layout_below="@id/walking"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="5dp"
                         android:text="Walking"
-
                         android:textColor="@color/dim_gray"
                         android:textSize="24sp"
                         app:fontFamily="@font/aclonica" />
+
                     <ImageView
-                        android:id="@+id/bus"
+                        android:id="@+id/walking"
                         android:layout_width="90dp"
                         android:layout_height="90dp"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="5dp"
+                        android:contentDescription="walking"
                         app:srcCompat="@drawable/walking" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
@@ -152,6 +151,7 @@
 
                         android:textSize="24sp"
                         app:fontFamily="@font/aclonica" />
+
                     <ImageView
                         android:id="@+id/imageView3"
                         android:layout_width="90dp"
@@ -159,6 +159,7 @@
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="5dp"
                         android:background="@color/white"
+                        android:contentDescription="imaggeview3"
                         app:srcCompat="@drawable/boating" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
@@ -195,13 +196,14 @@
 
                         android:textSize="24sp"
                         app:fontFamily="@font/aclonica" />
+
                     <ImageView
                         android:id="@+id/bus1"
                         android:layout_width="90dp"
                         android:layout_height="90dp"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="5dp"
-                        android:contentDescription="TODO"
+                        android:contentDescription="bus"
                         app:srcCompat="@drawable/bus" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
@@ -227,12 +229,14 @@
                         android:textColor="@color/dim_gray"
                         android:textSize="24sp"
                         app:fontFamily="@font/aclonica" />
+
                     <ImageView
                         android:id="@+id/train"
                         android:layout_width="90dp"
                         android:layout_height="90dp"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="5dp"
+                        android:contentDescription="train"
                         app:srcCompat="@drawable/train" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
@@ -268,12 +272,14 @@
 
                         android:textSize="24sp"
                         app:fontFamily="@font/aclonica" />
+
                     <ImageView
                         android:id="@+id/cycle"
                         android:layout_width="90dp"
                         android:layout_height="90dp"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="5dp"
+                        android:contentDescription="cycling"
                         app:srcCompat="@drawable/cycling" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
@@ -299,12 +305,14 @@
 
                         android:textSize="24sp"
                         app:fontFamily="@font/aclonica" />
+
                     <ImageView
                         android:id="@+id/airplane"
                         android:layout_width="90dp"
                         android:layout_height="90dp"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="5dp"
+                        android:contentDescription="airplane"
                         app:srcCompat="@drawable/airplane" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>

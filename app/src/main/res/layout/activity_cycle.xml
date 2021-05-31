@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Bus">
+    tools:context=".Cycle">
 
 
     <LinearLayout
@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:padding="8dp">
-        
+
         <Spinner
             android:id="@+id/sp_type"
             android:layout_width="0dp"
@@ -25,11 +25,11 @@
         <Button
             android:id="@+id/bt_find"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:text="Find"/>
-        
+
     </LinearLayout>
-    
+
 
 
     <fragment
