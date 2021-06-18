@@ -18,12 +18,6 @@
             android:background="@drawable/gradient_background"
             android:padding="20dp">
 
-            <ImageView
-                android:id="@+id/profile_image"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_centerVertical="true"
-                android:src="@drawable/login_icon" />
 
             <TextView
                 android:id="@+id/full_name"
@@ -31,10 +25,9 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="20dp"
-                android:layout_toRightOf="@+id/profile_image"
                 android:fontFamily="@font/gagalin"
                 android:includeFontPadding="false"
-                android:text="Dinesh Prajapati"
+                android:text="Your Profile"
                 android:textColor="#ffffff"
                 android:textSize="20sp" />
 
@@ -44,9 +37,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/full_name"
                 android:layout_marginLeft="20dp"
-                android:layout_toRightOf="@+id/profile_image"
                 android:includeFontPadding="false"
-                android:text="dinesh"
+                android:text="Username"
                 android:textColor="#ffffff"
                 android:textSize="14sp" />
         </RelativeLayout>
@@ -59,90 +51,75 @@
 
 
             <com.google.android.material.card.MaterialCardView
-                android:layout_width="0dp"
-                android:layout_height="125dp"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
+                android:layout_width="210dp"
+                android:layout_height="300dp"
+                android:layout_gravity=""
                 app:cardBackgroundColor="#e55d87"
-                app:cardElevation="10dp">
+                android:layout_marginLeft="80dp"
+                >
+
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center_horizontal"
                     android:padding="5dp">
 
                     <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:id="@+id/profile_image"
+                        android:layout_width="200dp"
+                        android:layout_height="200dp"
                         android:layout_centerHorizontal="true"
-                        android:src="@drawable/tour_wala_logo_img" />
+                        android:paddingRight="40dp"/>
 
 
-                    <TextView
-                        android:id="@+id/payment_label"
+                    <ImageButton
+                        android:id="@+id/set_photo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
+                        android:layout_below="@+id/profile_image"
                         android:fontFamily="@font/gagalin"
-                        android:includeFontPadding="false"
-                        android:text="$123"
-                        android:textSize="20sp" />
+                        android:layout_alignLeft="@+id/profile_image"
+                        android:layout_marginTop="20dp"
+                        android:background="#00000000"
+                        android:src="@drawable/capture_pic_logo"/>
 
                     <TextView
-                        android:id="@+id/payment_desc"
+                        android:id="@+id/tvset_photo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/payment_label"
-                        android:layout_centerHorizontal="true"
-                        android:includeFontPadding="false"
-                        android:text="Balance"
-                        android:textSize="14sp" />
-
-                </RelativeLayout>
-
-
-            </com.google.android.material.card.MaterialCardView>
-
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="0dp"
-                android:layout_height="125dp"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                app:cardBackgroundColor="#e55d87"
-                app:cardElevation="10dp">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="5dp">
-
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_centerHorizontal="true"
-                        android:src="@drawable/tour_wala_logo_img" />
-
-
-                    <TextView
-                        android:id="@+id/booking_label"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/set_photo"
+                        android:layout_alignLeft="@+id/profile_image"
                         android:layout_centerInParent="true"
                         android:fontFamily="@font/gagalin"
-                        android:includeFontPadding="false"
-                        android:text="12"
-                        android:textSize="20sp" />
+                        android:text="Set Photo"
+                        android:textColor="#fff"
+                        />
 
-                    <TextView
-                        android:id="@+id/booking_desc"
+                    <ImageButton
+                        android:id="@+id/remove_photo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/booking_label"
+                        android:layout_below="@+id/profile_image"
+                        android:layout_alignRight="@+id/profile_image"
+                        android:layout_marginTop="20dp"
                         android:layout_centerHorizontal="true"
-                        android:includeFontPadding="false"
-                        android:text="Booking"
-                        android:textSize="14sp" />
+                        android:background="#00000000"
+                        android:src="@drawable/remove_pic_logo"/>
+
+                    <TextView
+                        android:id="@+id/tvremove_photo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/remove_photo"
+                        android:layout_alignRight="@+id/profile_image"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="@font/gagalin"
+                        android:text="Remove Photo"
+                        android:textColor="#fff"
+                         />
 
                 </RelativeLayout>
 
@@ -162,7 +139,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:hint="Full Name">
+                android:hint="username">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/full_name_Text_input_edit_text"
@@ -185,22 +162,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/email"
-                    android:drawablePadding="10dp"/>
-
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:hint="Phone Number">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/Phone_number_Text_input_edit_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/phone"
                     android:drawablePadding="10dp"/>
 
 
