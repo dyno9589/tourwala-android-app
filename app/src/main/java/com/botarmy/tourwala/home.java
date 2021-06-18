@@ -7,19 +7,15 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import android.app.ActionBar;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.database.Cursor;
 import android.net.ConnectivityManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,19 +27,20 @@ public class home extends AppCompatActivity implements NavigationView.OnNavigati
     //variables
     NetworkChangeListener networkChangeListener = new NetworkChangeListener();
 
+
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
-    DatabaseHelper db=null;
-    private TextView textViewWelcome;
+    DatabaseHelper db = null;
+    TextView textViewWelcome;
     boolean doubleBackToExitPressedOncehome = false;
-    private String emailAddress;
+    String emailAddress;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        getSupportActionBar().hide();
-        setTitle("Home");
+        setTitle(null);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_home);
@@ -56,11 +53,14 @@ public class home extends AppCompatActivity implements NavigationView.OnNavigati
 
         /*----------------------------Hooks-----------------------------*/
 
-        drawerLayout=findViewById(R.id.drawer_layout);
-        navigationView=findViewById(R.id.nav_view);
-        toolbar=findViewById(R.id.toolbar);
+        drawerLayout = findViewById(R.id.drawer_layout);
+        navigationView = findViewById(R.id.nav_view);
+        toolbar = findViewById(R.id.toolbar);
 
-        textViewWelcome=(TextView)findViewById(R.id.welcome);
+        textViewWelcome = (TextView) findViewById(R.id.welcome);
+
+
+//        textView =(TextView) findViewById(R.id.textView);
 
         /*----------------------------Tool Bar-----------------------------*/
 //        toolbar.setVisibility(View.VISIBLE);
@@ -76,8 +76,7 @@ public class home extends AppCompatActivity implements NavigationView.OnNavigati
         navigationView.bringToFront();
 
 
-
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
@@ -85,12 +84,13 @@ public class home extends AppCompatActivity implements NavigationView.OnNavigati
 
         navigationView.setCheckedItem(R.id.nav_home);
 
-/*-------------------------------------------------------Here I am getting issue----------------------------------------------------------------------------------------------------*/
         db = new DatabaseHelper(this);
         String userName = db.chkwelcome(emailAddress);
         if (!userName.isEmpty()) {
             textViewWelcome.setText("Welcome " + userName + " ..");
         }
+
+
         onBackPressedhome();
     }
 
@@ -103,22 +103,15 @@ public class home extends AppCompatActivity implements NavigationView.OnNavigati
         this.doubleBackToExitPressedOncehome = true;
         Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
 
-        new Handler().postDelayed(new Runnable() {
-
-            @Override
-            public void run() {
-                doubleBackToExitPressedOncehome = false;
-            }
-        }, 2000);
+        new Handler().postDelayed(() -> doubleBackToExitPressedOncehome = false, 2000);
     }
 
 
     @Override
     public void onBackPressed() {
-        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
-        }
-        else {
+        } else {
             super.onBackPressed();
         }
     }
@@ -126,24 +119,46 @@ public class home extends AppCompatActivity implements NavigationView.OnNavigati
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.nav_home:
-            break;
+                break;
 
             case R.id.nav_bus:
-            Intent intent = new Intent(home.this,Bus.class);
-            startActivity(intent);
-            break;
+                Intent intent = new Intent(home.this, busbook.class);
+                startActivity(intent);
+                break;
 
             case R.id.nav_share:
-                Toast.makeText(this, "Share", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Share the application", Toast.LENGTH_SHORT).show();
                 break;
 
-                case R.id.nav_login:
-                    Intent intent_login = new Intent(home.this,login_form.class);
-                    startActivity(intent_login);
+            case R.id.nav_rate:
+                Toast.makeText(this, "Rate the application", Toast.LENGTH_SHORT).show();
                 break;
 
+            case R.id.nav_login:
+                Intent intent_login = new Intent(home.this, login_form.class);
+                startActivity(intent_login);
+                break;
+
+            case R.id.nav_cycle:
+                Intent intent_cycle = new Intent(home.this, Cycle.class);
+                startActivity(intent_cycle);
+                break;
+
+            case R.id.nav_plane:
+                Intent intent_plane = new Intent(home.this, planebook.class);
+                startActivity(intent_plane);
+
+            case R.id.nav_food:
+                gotoUrl("https://www.zomato.com");
+//                gotoUrl1("https://www.swiggy.com");
+                break;
+
+            case R.id.nav_hotel:
+                Intent intent_hotel = new Intent(home.this,hotelbook.class);
+                startActivity(intent_hotel);
+                break;
 
         }
 
@@ -151,10 +166,20 @@ public class home extends AppCompatActivity implements NavigationView.OnNavigati
         return true;
     }
 
+//    private void gotoUrl1(String s) {
+//        Uri uri = Uri.parse(s);
+//        startActivity(new Intent(Intent.ACTION_VIEW,uri));
+//    }
+
+    private void gotoUrl(String s) {
+        Uri uri = Uri.parse(s);
+        startActivity(new Intent(Intent.ACTION_VIEW,uri));
+    }
+
     @Override
     protected void onStart() {
         IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
-        registerReceiver(networkChangeListener,filter);
+        registerReceiver(networkChangeListener, filter);
         super.onStart();
     }
 

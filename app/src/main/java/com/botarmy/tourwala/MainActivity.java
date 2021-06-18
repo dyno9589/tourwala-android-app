@@ -1,37 +1,19 @@
 package com.botarmy.tourwala;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.ActivityOptions;
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.provider.Settings;
-import android.util.Pair;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import javax.security.auth.Destroyable;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static int SPLASH_SCREEN = 3000;
+//    private static int SPLASH_SCREEN = 3000;
     //variables
-    Animation topAnim, bottomAnim;
+//    Animation topAnim, bottomAnim;
     ImageView image;
     TextView logo, slogan;
     Button login, signup, skip;
@@ -45,9 +27,9 @@ public class MainActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
 
-        //Animations
-        topAnim = AnimationUtils.loadAnimation(this, R.anim.top_animation);
-        bottomAnim = AnimationUtils.loadAnimation(this, R.anim.bottom_animation);
+//        //Animations
+//        topAnim = AnimationUtils.loadAnimation(this, R.anim.top_animation);
+//        bottomAnim = AnimationUtils.loadAnimation(this, R.anim.bottom_animation);
 
         //Hooks
         image = findViewById(R.id.imageView3);
@@ -59,12 +41,12 @@ public class MainActivity extends AppCompatActivity {
         signup = findViewById(R.id.sign_up_btn_splash_screen);
         skip = findViewById(R.id.skip_btn_splash_screen);
 
-        image.setAnimation(topAnim);
-
-        logo.setAnimation(bottomAnim);
-        slogan.setAnimation(bottomAnim);
-        login.setAnimation(bottomAnim);
-        signup.setAnimation(bottomAnim);
+//        image.setAnimation(topAnim);
+//
+//        logo.setAnimation(bottomAnim);
+//        slogan.setAnimation(bottomAnim);
+//        login.setAnimation(bottomAnim);
+//        signup.setAnimation(bottomAnim);
 
 
 //        new Handler().postDelayed(new Runnable(){
@@ -84,13 +66,14 @@ public class MainActivity extends AppCompatActivity {
 //
 //            }
 //        },SPLASH_SCREEN);
-        onBackPressed();
+//        onBackPressed();
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, login_form.class);
                 startActivity(intent);
+                finish();
 
 
             }
@@ -101,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, register_form.class);
                 startActivity(intent);
+                finish();
 
 
             }
@@ -131,26 +115,26 @@ public class MainActivity extends AppCompatActivity {
 //        });
     }
 
-    boolean doubleBackToExitPressedOnce = false;
-
-    @Override
-    public void onBackPressed() {
-        if (doubleBackToExitPressedOnce) {
-            super.onBackPressed();
-            return;
-        }
-
-        this.doubleBackToExitPressedOnce = true;
-        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
-
-        new Handler().postDelayed(new Runnable() {
-
-            @Override
-            public void run() {
-                doubleBackToExitPressedOnce = false;
-            }
-        }, 2000);
-    }
+//    boolean doubleBackToExitPressedOnce = false;
+//
+//    @Override
+//    public void onBackPressed() {
+//        if (doubleBackToExitPressedOnce) {
+//            super.onBackPressed();
+//            return;
+//        }
+//
+//        this.doubleBackToExitPressedOnce = true;
+//        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+//
+//        new Handler().postDelayed(new Runnable() {
+//
+//            @Override
+//            public void run() {
+//                doubleBackToExitPressedOnce = false;
+//            }
+//        }, 2000);
+//    }
 
 
 

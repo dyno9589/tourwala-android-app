@@ -1,36 +1,20 @@
 package com.botarmy.tourwala;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.ActivityOptions;
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
-import android.net.Network;
-import android.net.NetworkInfo;
-import android.os.Build;
 import android.os.Bundle;
-import android.provider.Settings;
-import android.util.Pair;
-import android.view.View;
+//import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.botarmy.tourwala.Utility.NetworkChangeListener;
 import com.google.android.material.textfield.TextInputLayout;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
 public class  login_form extends AppCompatActivity {
 
@@ -38,7 +22,7 @@ public class  login_form extends AppCompatActivity {
 
     NetworkChangeListener networkChangeListener = new NetworkChangeListener();
 
-    Button callSignUp;
+//    Button callSignUp;
     Button signup_btn;
     Button login_btn;
     ImageView image;
@@ -57,7 +41,7 @@ public class  login_form extends AppCompatActivity {
         db = new DatabaseHelper(this);
         //Hooks
 
-        callSignUp = (Button) findViewById(R.id.new_user_signup_btn);
+//        callSignUp = (Button) findViewById(R.id.new_user_signup_btn);
         image = findViewById(R.id.logo_image_transparent);
         logoText = findViewById(R.id.id_for_logo_name);
         sloganText = findViewById(R.id.slogan_name_for_logo_name);
@@ -68,38 +52,32 @@ public class  login_form extends AppCompatActivity {
         signup_btn = findViewById(R.id.new_user_signup_btn);
         login_btn =(Button) findViewById(R.id.login_btn);
 
-        signup_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent movetoregisterpage = new Intent(login_form.this,register_form.class);
-                startActivity(movetoregisterpage);
-            }
+        signup_btn.setOnClickListener(v -> {
+            Intent movetoregisterpage = new Intent(login_form.this,register_form.class);
+            startActivity(movetoregisterpage);
         });
 
 
-        login_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        login_btn.setOnClickListener(v -> {
 
 //                if(!isConnected(login_form.this)){
 //                    showCustomDialog();
 //                }
 
-                String email = e1.getEditText().getText().toString();
-                String password =e2.getEditText().getText().toString();
+            String email = e1.getEditText().getText().toString();
+            String password =e2.getEditText().getText().toString();
 
-                Boolean chkemailpass = db.emailpassword(email,password);
+            Boolean chkemailpass = db.emailpassword(email,password);
 
-                if(chkemailpass==true){
-                    Toast.makeText(getApplicationContext(),"Successfully Login",Toast.LENGTH_SHORT).show();
-                    Intent movetohome = new Intent(login_form.this,home.class);
-                    movetohome.putExtra("Email", email);
-                    startActivity(movetohome);
-                    finish();
-                }
-                else {
-                    Toast.makeText(getApplicationContext(), "Incorrect Email or Password", Toast.LENGTH_SHORT).show();
-                }
+            if(chkemailpass==true){
+                Toast.makeText(getApplicationContext(),"Successfully Login",Toast.LENGTH_SHORT).show();
+                Intent movetohome = new Intent(login_form.this,home.class);
+                movetohome.putExtra("Email", email);
+                startActivity(movetohome);
+                finish();
+            }
+            else {
+                Toast.makeText(getApplicationContext(), "Incorrect Email or Password", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -128,42 +106,42 @@ public class  login_form extends AppCompatActivity {
 
 
 
-    //Check internet connection
-    private boolean isConnected(login_form login) {
-        ConnectivityManager connectivityManager = (ConnectivityManager) login.getSystemService(Context.CONNECTIVITY_SERVICE);
-
-        NetworkInfo wifiConn = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-        NetworkInfo mobileConn = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-
-        if((wifiConn != null && wifiConn.isConnected()) || (mobileConn != null && mobileConn.isConnected())){
-            return true;
-        }
-        else {
-            return false;
-        }
-
-    }
-    //show custom dialog if the internet is not availabe;
-    private void showCustomDialog() {
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(login_form.this);
-        builder.setMessage("PLease connect to the internet to proceed further")
-                .setCancelable(false)
-                .setPositiveButton("Connect", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
-                    }
-                })
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
-                        finish();
-                    }
-                });
-
-    }
+//    //Check internet connection
+//    private boolean isConnected(login_form login) {
+//        ConnectivityManager connectivityManager = (ConnectivityManager) login.getSystemService(Context.CONNECTIVITY_SERVICE);
+//
+//        NetworkInfo wifiConn = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+//        NetworkInfo mobileConn = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+//
+//        if((wifiConn != null && wifiConn.isConnected()) || (mobileConn != null && mobileConn.isConnected())){
+//            return true;
+//        }
+//        else {
+//            return false;
+//        }
+//
+//    }
+    //show custom dialog if the internet is not available;
+//    private void showCustomDialog() {
+//
+//        AlertDialog.Builder builder = new AlertDialog.Builder(login_form.this);
+//        builder.setMessage("PLease connect to the internet to proceed further")
+//                .setCancelable(false)
+//                .setPositiveButton("Connect", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialogInterface, int i) {
+//                        startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
+//                    }
+//                })
+//                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialogInterface, int i) {
+//                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+//                        finish();
+//                    }
+//                });
+//
+//    }
 
     @Override
     protected void onStart() {

@@ -10,5 +10,33 @@
     <string name="navigation_drawer_open">Open Navigation drawer</string>
     <string name="navigation_drawer_close">Close Navigation drawer</string>
     <string name="google_map_key">AIzaSyB_qsP8AOP_P0MdlPz-48TDaJYjTP3vbjo</string>
+    <string name="find">Find</string>
+    <string name="BookingAirport">Ticket Booking and Airports</string>
+    <string name="airplane">Airplane</string>
+    <string name="welcome_user">Welcome user</string>
+    <string name="traveling">Traveling</string>
+    <string name="start_a_new_journey">Start a new Journey</string>
+    <string name="main_top_image">main_top_image</string>
+    <string name="walking">Walking</string>
+    <string name="boating">Boating</string>
+    <string name="boating_home">boating</string>
+    <string name="bus">Bus</string>
+    <string name="todo">TODO</string>
+    <string name="train">Train</string>
+    <string name="cycle">cycle</string>
+    <string name="hotel">Hotel</string>
+    <string name="restaurants">Restaurants</string>
+    <string name="hospital">Hospital</string>
+    <string name="atm">ATM</string>
+    <string name="hill_stations">Hill Stations</string>
+    <string name="bank">Bank</string>
+    <string name="food">Food</string>
+    <string name="medical">Medical</string>
+    <string name="booking_hotel">Hotel booking and nearby hotels</string>
+    <string name="book_your_hotel">Book your Hotel</string>
+    <string name="see_nearby_hotels">See Nearby Hotels</string>
+    <string name="about_paragraph"></string>
+
+
 
 </resources>

@@ -209,9 +209,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return userName;
     }
+
 }
 
 

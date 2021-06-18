@@ -24,14 +24,24 @@
             android:icon="@drawable/plane_logo"
             android:title="Plane" />
 
+        <item
+            android:id="@+id/nav_food"
+            android:icon="@drawable/food_logo"
+            android:title="Order Food" />
+
+        <item
+            android:id="@+id/nav_hotel"
+            android:icon="@drawable/hotel_logo"
+            android:title="Hotel" />
+
 
     </group>
 
 
-        <item android:title="Profile">
+    <item android:title="Profile">
 
-            <menu>
-                <group android:checkableBehavior="single">
+        <menu>
+            <group android:checkableBehavior="single">
 
                 <item
                     android:id="@+id/nav_login"
@@ -47,9 +57,9 @@
                     android:id="@+id/nav_logout"
                     android:icon="@drawable/logout_icon"
                     android:title="Logout" />
-                </group>
-            </menu>
-        </item>
+            </group>
+        </menu>
+    </item>
 
 
     <item android:title="Communicate">
@@ -58,15 +68,21 @@
 
             <group android:checkableBehavior="single">
 
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/share_logo"
-                android:title="Share"/>
+                <item
+                    android:id="@+id/nav_share"
+                    android:icon="@drawable/share_logo"
+                    android:title="Share" />
 
-            <item
-                android:id="@+id/nav_rate"
-                android:icon="@drawable/rate_logo"
-                android:title="Rate"/>
+                <item
+                    android:id="@+id/nav_rate"
+                    android:icon="@drawable/rate_logo"
+                    android:title="Rate" />
+                <item
+                    android:id="@+id/nav_about"
+                    android:icon="@drawable/about_logo"
+                    android:title="About" />
+
+
             </group>
         </menu>
 

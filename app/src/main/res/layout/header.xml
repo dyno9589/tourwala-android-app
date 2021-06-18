@@ -8,8 +8,8 @@
     android:padding="20dp">
 
     <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
         android:src="@drawable/tour_and_travel_logo"/>
 
     <TextView
@@ -19,11 +19,6 @@
         android:text="Traveling"
         android:textSize="24sp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/aclonica"
-        android:text="www.dineshprajapati.com"
-        android:textSize="14sp" />
+
 
 </LinearLayout>

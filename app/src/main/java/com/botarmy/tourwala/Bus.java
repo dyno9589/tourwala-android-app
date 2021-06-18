@@ -6,15 +6,19 @@ import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
+import com.botarmy.tourwala.Utility.NetworkChangeListener;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdate;
@@ -42,6 +46,9 @@ import java.util.List;
 
 public class Bus extends AppCompatActivity {
 
+    NetworkChangeListener networkChangeListener = new NetworkChangeListener();
+
+
     //initialize variable
     Spinner spType;
     Button btFind;
@@ -55,6 +62,10 @@ public class Bus extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bus);
 
+        getSupportActionBar().hide();
+
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         //Assign variables
 
         spType = findViewById(R.id.sp_type);
@@ -65,9 +76,11 @@ public class Bus extends AppCompatActivity {
 
         //Initialize array of place type
         String[] placeTypeList = {"atm", "bank", "hospital", "movie_theater", "restaurant"};
+//        String[] placeTypeList = {"bus_stations", "bus_stops"};
 
         //Initialize array of place name
         String[] placeNameList = {"ATM", "Bank", "Hospital", "Movie_Theater", "Restaurant"};
+//        String[] placeNameList = {"BUS_STATIONS", "BUS_STOPS"};
 
         //set adapter on spinner
         spType.setAdapter(new ArrayAdapter<>(Bus.this
@@ -82,11 +95,11 @@ public class Bus extends AppCompatActivity {
             //when permission granted
             //call method
             getCurrentLocation();
-        }else {
+        } else {
             //When permission denied
             //Request permission
             ActivityCompat.requestPermissions(Bus.this
-            ,new String[]{Manifest.permission.ACCESS_FINE_LOCATION},44);
+                    , new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 44);
         }
 
         btFind.setOnClickListener(new View.OnClickListener() {
@@ -95,12 +108,12 @@ public class Bus extends AppCompatActivity {
                 //Get selected position of spinner
                 int i = spType.getSelectedItemPosition();
                 //Initialize url
-                String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json"+ //url
-                "?location=" + currentLat + "," + currentLong + //Location Latitude and Longitude
-                "&radius=5000" + //Nearby radius
-                "&types=" + placeTypeList[i] + //Place type
-                "&sensor=true" + //Sensor
-                "&key=" + getResources().getString(R.string.google_map_key); //Google map key
+                String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json" + //url
+                        "?location=" + currentLat + "," + currentLong + //Location Latitude and Longitude
+                        "&radius=7000" + //Nearby radius
+                        "&types=" + placeTypeList[i] + //Place type
+                        "&sensor=true" + //Sensor
+                        "&key=" + getResources().getString(R.string.google_map_key); //Google map key
 
                 //Execute place task  method to download json data
                 new PlaceTask().execute(url);
@@ -110,7 +123,22 @@ public class Bus extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onStart() {
+        IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(networkChangeListener, filter);
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        unregisterReceiver(networkChangeListener);
+        super.onStop();
+    }
+
     private void getCurrentLocation() {
+        //Initialize task location
+
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
@@ -121,8 +149,6 @@ public class Bus extends AppCompatActivity {
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
-
-        //Initialize task location
         Task<Location> task = fusedLocationProviderClient.getLastLocation();
         task.addOnSuccessListener(new OnSuccessListener<Location>() {
             @Override
@@ -142,7 +168,7 @@ public class Bus extends AppCompatActivity {
                             map = googleMap;
                             //Zoom current Location on map
                             map.animateCamera(CameraUpdateFactory.newLatLngZoom(
-                                    new LatLng(currentLat,currentLong),10
+                                    new LatLng(currentLat,currentLong),17
                             ));
                         }
                     });
