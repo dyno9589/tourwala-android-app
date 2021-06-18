@@ -71,7 +71,7 @@ public class home extends AppCompatActivity implements NavigationView.OnNavigati
 //hide or show items
         Menu menu = navigationView.getMenu();
         menu.findItem(R.id.nav_logout).setVisible(false);
-        menu.findItem(R.id.nav_profile).setVisible(false);
+//        menu.findItem(R.id.nav_profile).setVisible(false);
 
         navigationView.bringToFront();
 
@@ -156,8 +156,13 @@ public class home extends AppCompatActivity implements NavigationView.OnNavigati
                 break;
 
             case R.id.nav_hotel:
-                Intent intent_hotel = new Intent(home.this,hotelbook.class);
+                Intent intent_hotel = new Intent(home.this, hotelbook.class);
                 startActivity(intent_hotel);
+                break;
+
+            case R.id.nav_profile:
+                Intent intent_profile = new Intent(home.this, UserProfile.class);
+                startActivity(intent_profile);
                 break;
 
         }
@@ -173,7 +178,7 @@ public class home extends AppCompatActivity implements NavigationView.OnNavigati
 
     private void gotoUrl(String s) {
         Uri uri = Uri.parse(s);
-        startActivity(new Intent(Intent.ACTION_VIEW,uri));
+        startActivity(new Intent(Intent.ACTION_VIEW, uri));
     }
 
     @Override
