@@ -9,6 +9,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -31,11 +32,15 @@ public class home extends AppCompatActivity implements NavigationView.OnNavigati
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
-    DatabaseHelper db = null;
-    TextView textViewWelcome;
-    boolean doubleBackToExitPressedOncehome = false;
+    private static final String SHARED_PREF_NAME = "loginpref";
     String emailAddress;
-
+    private static final String KEY_EMAIL = "email";
+    private static final String KEY_PASSWORD = "password";
+//    DatabaseHelper db = null;
+//    TextView textViewWelcome;
+    boolean doubleBackToExitPressedOncehome = false;
+    TextView email_profile, password_profile;
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +49,8 @@ public class home extends AppCompatActivity implements NavigationView.OnNavigati
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_home);
+
+
 
 
         Intent intent = getIntent();
@@ -57,7 +64,14 @@ public class home extends AppCompatActivity implements NavigationView.OnNavigati
         navigationView = findViewById(R.id.nav_view);
         toolbar = findViewById(R.id.toolbar);
 
-        textViewWelcome = (TextView) findViewById(R.id.welcome);
+//        textViewWelcome = (TextView) findViewById(R.id.welcome);
+
+
+        email_profile = findViewById(R.id.email_profile);
+        password_profile = findViewById(R.id.password_profile);
+
+        sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
+
 
 
 //        textView =(TextView) findViewById(R.id.textView);
@@ -70,7 +84,7 @@ public class home extends AppCompatActivity implements NavigationView.OnNavigati
 
 //hide or show items
         Menu menu = navigationView.getMenu();
-        menu.findItem(R.id.nav_logout).setVisible(false);
+        menu.findItem(R.id.nav_logout).setVisible(true);
 //        menu.findItem(R.id.nav_profile).setVisible(false);
 
         navigationView.bringToFront();
@@ -84,11 +98,11 @@ public class home extends AppCompatActivity implements NavigationView.OnNavigati
 
         navigationView.setCheckedItem(R.id.nav_home);
 
-        db = new DatabaseHelper(this);
-        String userName = db.chkwelcome(emailAddress);
-        if (!userName.isEmpty()) {
-            textViewWelcome.setText("Welcome " + userName + " ..");
-        }
+//        db = new DatabaseHelper(this);
+//        String userName = db.chkwelcome(emailAddress);
+//        if (!userName.isEmpty()) {
+//            textViewWelcome.setText("Welcome " + userName + " ..");
+//        }
 
 
         onBackPressedhome();
@@ -134,11 +148,19 @@ public class home extends AppCompatActivity implements NavigationView.OnNavigati
 
             case R.id.nav_rate:
                 Toast.makeText(this, "Rate the application", Toast.LENGTH_SHORT).show();
+                gotoUrlrate("https://forms.gle/zfL8ugQmFDyy7Pkn8");
                 break;
 
             case R.id.nav_login:
                 Intent intent_login = new Intent(home.this, login_form.class);
                 startActivity(intent_login);
+                break;
+
+            case R.id.nav_logout:
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.clear();
+                editor.commit();
+                Toast.makeText(this, "Log out successfully", Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.nav_cycle:
@@ -149,15 +171,20 @@ public class home extends AppCompatActivity implements NavigationView.OnNavigati
             case R.id.nav_plane:
                 Intent intent_plane = new Intent(home.this, planebook.class);
                 startActivity(intent_plane);
+                break;
 
             case R.id.nav_food:
                 gotoUrl("https://www.zomato.com");
-//                gotoUrl1("https://www.swiggy.com");
                 break;
 
             case R.id.nav_hotel:
                 Intent intent_hotel = new Intent(home.this, hotelbook.class);
                 startActivity(intent_hotel);
+                break;
+
+            case R.id.nav_about:
+                Intent intent_about = new Intent(home.this, about.class);
+                startActivity(intent_about);
                 break;
 
             case R.id.nav_profile:
@@ -169,6 +196,11 @@ public class home extends AppCompatActivity implements NavigationView.OnNavigati
 
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void gotoUrlrate(String s) {
+        Uri uri = Uri.parse(s);
+        startActivity(new Intent(Intent.ACTION_VIEW, uri));
     }
 
 //    private void gotoUrl1(String s) {

@@ -75,16 +75,15 @@ public class Bus extends AppCompatActivity {
 
 
         //Initialize array of place type
-        String[] placeTypeList = {"atm", "bank", "hospital", "movie_theater", "restaurant"};
-//        String[] placeTypeList = {"bus_stations", "bus_stops"};
+//        String[] placeTypeList = {"atm", "bank", "hospital", "movie_theater", "restaurant"};
+        String[] placeTypeList = {"bus_stations", "bus_stops"};
 
         //Initialize array of place name
-        String[] placeNameList = {"ATM", "Bank", "Hospital", "Movie_Theater", "Restaurant"};
-//        String[] placeNameList = {"BUS_STATIONS", "BUS_STOPS"};
+//        String[] placeNameList = {"ATM", "Bank", "Hospital", "Movie_Theater", "Restaurant"};
+        String[] placeNameList = {"BUS_STATIONS", "BUS_STOPS"};
 
         //set adapter on spinner
-        spType.setAdapter(new ArrayAdapter<>(Bus.this
-                , android.R.layout.simple_spinner_dropdown_item, placeNameList));
+        spType.setAdapter(new ArrayAdapter<>(Bus.this, android.R.layout.simple_spinner_dropdown_item, placeNameList));
 
         //Initialize fused Location Provider Client
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);

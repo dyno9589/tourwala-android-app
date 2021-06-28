@@ -2,6 +2,7 @@ package com.botarmy.tourwala;
 
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 //import android.view.View;
@@ -29,6 +30,11 @@ public class  login_form extends AppCompatActivity {
     TextView logoText,sloganText;
     TextInputLayout e1,e2;
 
+    private static final String SHARED_PREF_NAME = "loginpref";
+    //shared Preferences name and also create key name
+    private static final String KEY_EMAIL = "email";
+    private static final String KEY_PASSWORD = "password";
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,20 +55,42 @@ public class  login_form extends AppCompatActivity {
         e1 =(TextInputLayout) findViewById(R.id.email_login_page);
         e2 =(TextInputLayout) findViewById(R.id.password_login_page);
 
-        signup_btn = findViewById(R.id.new_user_signup_btn);
+        signup_btn =(Button) findViewById(R.id.new_user_signup_btn);
         login_btn =(Button) findViewById(R.id.login_btn);
+
+
+        sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
+        //when open activity first check shared preferences available or not
+
+        String emailsp = sharedPreferences.getString(KEY_EMAIL,null);
+
+        if(emailsp != null){
+            //if data is available so directly call on home activity ..
+            Intent intent = new Intent(login_form.this,home.class);
+            startActivity(intent);
+            finish();
+        }
+
+
+
 
         signup_btn.setOnClickListener(v -> {
             Intent movetoregisterpage = new Intent(login_form.this,register_form.class);
             startActivity(movetoregisterpage);
+            finish();
         });
 
 
         login_btn.setOnClickListener(v -> {
 
-//                if(!isConnected(login_form.this)){
-//                    showCustomDialog();
-//                }
+            //put data on shared preferences ..
+
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString(KEY_EMAIL,e1.getEditText().getText().toString());
+            editor.putString(KEY_PASSWORD,e2.getEditText().getText().toString());
+            editor.apply();
+
+
 
             String email = e1.getEditText().getText().toString();
             String password =e2.getEditText().getText().toString();

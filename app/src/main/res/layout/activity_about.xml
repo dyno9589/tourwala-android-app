@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    android:orientation="vertical"
+    android:padding="20sp"
+    tools:context=".about">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:fontFamily="@font/josefinsans_regular"
+        android:text="About"
+        android:textAlignment="center"
+        android:textColor="#fff"
+        android:textSize="51sp"
+        android:textStyle="bold"/>
+
+    <Button
+        android:id="@+id/versionbutton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:background="#00000000"
+        android:clickable="false"
+        android:fontFamily="@font/josefinsans_regular"
+        android:text="Version:\n\n Tourwala v0.1"
+        android:textColor="#fff"
+        android:textSize="16sp"/>
+
+ <Button
+        android:id="@+id/contactbutton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:background="#00000000"
+        android:clickable="true"
+        android:fontFamily="@font/josefinsans_regular"
+        android:text="Contact:\n\n botarmyteam@gmail.com"
+        android:textColor="#fff"
+        android:textSize="16sp"/>
+
+ <Button
+        android:id="@+id/instagrambutton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:background="#00000000"
+        android:clickable="true"
+        android:fontFamily="@font/josefinsans_regular"
+        android:text="Instagram:\n\n bot_army_team"
+        android:textColor="#fff"
+        android:textSize="16sp"/>
+
+ <Button
+        android:id="@+id/youtubebutton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:background="#00000000"
+        android:clickable="true"
+        android:fontFamily="@font/josefinsans_regular"
+        android:text="Youtube:\n\n Bot Army"
+        android:textColor="#fff"
+        android:textSize="16sp"/>
+
+ <Button
+        android:id="@+id/feedbackbutton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:background="#00000000"
+        android:clickable="true"
+        android:fontFamily="@font/josefinsans_regular"
+        android:text="give feedback"
+        android:textColor="#fff"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="70dp"
+        android:text="© 2021 Bot Army"
+        android:textAlignment="center"
+        android:textColor="#fff"/>
+
+
+</LinearLayout>

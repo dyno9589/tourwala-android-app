@@ -20,7 +20,7 @@
 
 
             <TextView
-                android:id="@+id/full_name"
+                android:id="@+id/your_profile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -32,10 +32,10 @@
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/username"
+                android:id="@+id/username_top"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/full_name"
+                android:layout_below="@+id/your_profile"
                 android:layout_marginLeft="20dp"
                 android:includeFontPadding="false"
                 android:text="Username"
@@ -47,16 +47,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="-100dp"
+            android:orientation="vertical"
             android:padding="20dp">
 
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="210dp"
                 android:layout_height="300dp"
-                android:layout_gravity=""
-                app:cardBackgroundColor="#e55d87"
-                android:layout_marginLeft="80dp"
-                >
+                android:layout_gravity="center_horizontal"
+                app:cardBackgroundColor="#e55d87">
 
 
                 <RelativeLayout
@@ -135,62 +134,62 @@
             android:orientation="vertical"
             android:padding="20dp">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:hint="username">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/full_name_Text_input_edit_text"
+
+<!--                <TextView-->
+<!--                    android:id="@+id/username_profile"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:drawableLeft="@drawable/full_name"-->
+<!--                    android:text="Username"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textSize="20sp"-->
+<!--                    android:drawablePadding="10dp"/>-->
+
+
+
+
+
+
+                <TextView
+                    android:id="@+id/email_profile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/full_name"
-                    android:drawablePadding="10dp"/>
-
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:hint="E-Mail">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/Email_Text_input_edit_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="E-mail"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
                     android:drawableLeft="@drawable/email"
                     android:drawablePadding="10dp"/>
 
 
-            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:hint="Password">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/password_Text_input_edit_text"
+
+
+                <TextView
+                    android:id="@+id/password_profile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="Password"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
                     android:drawableLeft="@drawable/password"
                     android:drawablePadding="10dp"/>
 
 
-            </com.google.android.material.textfield.TextInputLayout>
 
             <Button
+                android:id="@+id/btn_update_profile"
                 android:layout_width="match_parent"
+                android:layout_marginTop="20dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/gagalin"
                 android:text="Update" />
 
-
         </LinearLayout>
+
 
 
     </LinearLayout>

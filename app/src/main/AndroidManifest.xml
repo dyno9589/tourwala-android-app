@@ -18,6 +18,9 @@
         android:roundIcon="@drawable/tour_wala_logo_img"
         android:supportsRtl="true"
         android:theme="@style/Theme.Tourwala">
+        <activity android:name=".update_profile"></activity>
+        <activity android:name=".email" />
+        <activity android:name=".about" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -30,6 +33,10 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
         <activity android:name=".hotelbook" />
         <activity android:name=".planebook" />
         <activity android:name=".boating" />
@@ -39,7 +46,7 @@
         <activity android:name=".Cycle" /> <!-- <activity android:name=".splash_screen" /> -->
         <activity android:name=".Bus" />
         <activity android:name=".SecondActivity" />
-         <activity android:name=".UserProfile"></activity>
+        <activity android:name=".UserProfile" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
