@@ -51,7 +51,6 @@
         <activity android:name=".plane" />
         <activity android:name=".Cycle" /> <!-- <activity android:name=".splash_screen" /> -->
         <activity android:name=".Bus" />
-        <activity android:name=".SecondActivity" />
         <activity android:name=".UserProfile" />
         <activity android:name=".MainActivity">
             <intent-filter>
