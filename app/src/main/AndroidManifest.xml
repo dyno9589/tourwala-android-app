@@ -18,7 +18,9 @@
         android:roundIcon="@drawable/tour_wala_logo_img"
         android:supportsRtl="true"
         android:theme="@style/Theme.Tourwala">
-        <activity android:name=".medical"></activity>
+        <activity android:name=".hotel"></activity>
+        <activity android:name=".trainbook" />
+        <activity android:name=".medical" />
         <activity android:name=".hillstation" />
         <activity android:name=".bank" />
         <activity android:name=".atm" />

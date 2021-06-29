@@ -27,7 +27,7 @@
         android:background="#00000000"
         android:clickable="false"
         android:fontFamily="@font/josefinsans_regular"
-        android:text="Version:\n\n Tourwala v0.1"
+        android:text="Version:\n\n Tourwala v 1.0"
         android:textColor="#fff"
         android:textSize="16sp"/>
 

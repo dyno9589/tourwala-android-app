@@ -27,20 +27,20 @@
                 android:layout_marginLeft="20dp"
                 android:fontFamily="@font/gagalin"
                 android:includeFontPadding="false"
-                android:text="Your Profile"
+                android:text="Profile"
                 android:textColor="#ffffff"
-                android:textSize="20sp" />
+                android:textSize="50sp" />
 
-            <TextView
-                android:id="@+id/username_top"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/your_profile"
-                android:layout_marginLeft="20dp"
-                android:includeFontPadding="false"
-                android:text="Username"
-                android:textColor="#ffffff"
-                android:textSize="14sp" />
+<!--            <TextView-->
+<!--                android:id="@+id/username_top"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_below="@+id/your_profile"-->
+<!--                android:layout_marginLeft="20dp"-->
+<!--                android:includeFontPadding="false"-->
+<!--                android:text="Username"-->
+<!--                android:textColor="#ffffff"-->
+<!--                android:textSize="14sp" />-->
         </RelativeLayout>
 
         <LinearLayout
@@ -51,82 +51,88 @@
             android:padding="20dp">
 
 
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="210dp"
-                android:layout_height="300dp"
-                android:layout_gravity="center_horizontal"
-                app:cardBackgroundColor="#e55d87">
+<!--            <com.google.android.material.card.MaterialCardView-->
+<!--                android:layout_width="210dp"-->
+<!--                android:layout_height="300dp"-->
+<!--                android:layout_gravity="center_horizontal"-->
+<!--                app:cardBackgroundColor="#e55d87">-->
 
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center_horizontal"
-                    android:gravity="center_horizontal"
-                    android:padding="5dp">
+<!--                <RelativeLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_gravity="center_horizontal"-->
+<!--                    android:gravity="center_horizontal"-->
+<!--                    android:padding="5dp">-->
 
-                    <ImageView
-                        android:id="@+id/profile_image"
-                        android:layout_width="200dp"
-                        android:layout_height="200dp"
-                        android:layout_centerHorizontal="true"
-                        android:paddingRight="40dp"/>
-
-
-                    <ImageButton
-                        android:id="@+id/set_photo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:layout_below="@+id/profile_image"
-                        android:fontFamily="@font/gagalin"
-                        android:layout_alignLeft="@+id/profile_image"
-                        android:layout_marginTop="20dp"
-                        android:background="#00000000"
-                        android:src="@drawable/capture_pic_logo"/>
-
-                    <TextView
-                        android:id="@+id/tvset_photo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/set_photo"
-                        android:layout_alignLeft="@+id/profile_image"
-                        android:layout_centerInParent="true"
-                        android:fontFamily="@font/gagalin"
-                        android:text="Set Photo"
-                        android:textColor="#fff"
-                        />
-
-                    <ImageButton
-                        android:id="@+id/remove_photo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/profile_image"
-                        android:layout_alignRight="@+id/profile_image"
-                        android:layout_marginTop="20dp"
-                        android:layout_centerHorizontal="true"
-                        android:background="#00000000"
-                        android:src="@drawable/remove_pic_logo"/>
-
-                    <TextView
-                        android:id="@+id/tvremove_photo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/remove_photo"
-                        android:layout_alignRight="@+id/profile_image"
-                        android:layout_centerInParent="true"
-                        android:fontFamily="@font/gagalin"
-                        android:text="Remove Photo"
-                        android:textColor="#fff"
-                         />
-
-                </RelativeLayout>
+<!--                    <ImageView-->
+<!--                        android:id="@+id/profile_image"-->
+<!--                        android:layout_width="200dp"-->
+<!--                        android:layout_height="200dp"-->
+<!--                        android:layout_centerHorizontal="true"-->
+<!--                        android:paddingRight="40dp"/>-->
 
 
-            </com.google.android.material.card.MaterialCardView>
+<!--                    <ImageButton-->
+<!--                        android:id="@+id/set_photo"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_centerInParent="true"-->
+<!--                        android:layout_below="@+id/profile_image"-->
+<!--                        android:fontFamily="@font/gagalin"-->
+<!--                        android:layout_alignLeft="@+id/profile_image"-->
+<!--                        android:layout_marginTop="20dp"-->
+<!--                        android:background="#00000000"-->
+<!--                        android:src="@drawable/capture_pic_logo"/>-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/tvset_photo"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_below="@+id/set_photo"-->
+<!--                        android:layout_alignLeft="@+id/profile_image"-->
+<!--                        android:layout_centerInParent="true"-->
+<!--                        android:fontFamily="@font/gagalin"-->
+<!--                        android:text="Set Photo"-->
+<!--                        android:textColor="#fff"-->
+<!--                        />-->
+
+<!--                    <ImageButton-->
+<!--                        android:id="@+id/remove_photo"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_below="@+id/profile_image"-->
+<!--                        android:layout_alignRight="@+id/profile_image"-->
+<!--                        android:layout_marginTop="20dp"-->
+<!--                        android:layout_centerHorizontal="true"-->
+<!--                        android:background="#00000000"-->
+<!--                        android:src="@drawable/remove_pic_logo"/>-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/tvremove_photo"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_below="@+id/remove_photo"-->
+<!--                        android:layout_alignRight="@+id/profile_image"-->
+<!--                        android:layout_centerInParent="true"-->
+<!--                        android:fontFamily="@font/gagalin"-->
+<!--                        android:text="Remove Photo"-->
+<!--                        android:textColor="#fff"-->
+<!--                         />-->
+
+<!--                </RelativeLayout>-->
+
+
+<!--            </com.google.android.material.card.MaterialCardView>-->
 
 
         </LinearLayout>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="380dp"
+                android:layout_height="200dp"
+                android:layout_gravity="center_horizontal"
+                app:cardBackgroundColor="#e55d87">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -145,9 +151,6 @@
 <!--                    android:textStyle="bold"-->
 <!--                    android:textSize="20sp"-->
 <!--                    android:drawablePadding="10dp"/>-->
-
-
-
 
 
 
@@ -171,7 +174,7 @@
                     android:id="@+id/password_profile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="50dp"
                     android:text="Password"
                     android:textSize="20sp"
                     android:textStyle="bold"
@@ -180,18 +183,18 @@
 
 
 
-            <Button
-                android:id="@+id/btn_update_profile"
-                android:layout_width="match_parent"
-                android:layout_marginTop="20dp"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/gagalin"
-                android:text="Update" />
+<!--            <Button-->
+<!--                android:id="@+id/btn_update_profile"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:fontFamily="@font/gagalin"-->
+<!--                android:text="Update" />-->
 
         </LinearLayout>
 
 
-
+</com.google.android.material.card.MaterialCardView>
     </LinearLayout>
 
 </ScrollView>

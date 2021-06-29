@@ -118,7 +118,7 @@ public class home extends AppCompatActivity implements NavigationView.OnNavigati
         cTrain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent totrain = new Intent(home.this,train.class);
+                Intent totrain = new Intent(home.this,trainbook.class);
                 startActivity(totrain);
             }
         });
@@ -142,8 +142,8 @@ public class home extends AppCompatActivity implements NavigationView.OnNavigati
         cHotel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent tohotel = new Intent(home.this,hotel.class);
-                startActivity(tohotel);
+                Intent tohotels = new Intent(home.this,hotelbook.class);
+                startActivity(tohotels);
             }
         });
 

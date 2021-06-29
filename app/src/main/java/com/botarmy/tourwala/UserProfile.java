@@ -83,7 +83,7 @@ public class UserProfile extends AppCompatActivity {
     private static final String KEY_PASSWORD = "password";
 //    TextView username_top, username_profile;
     TextView email_profile, password_profile;
-    Button btn_update;
+//    Button btn_update;
     SharedPreferences sharedPreferences;
 
     @Override
@@ -104,7 +104,7 @@ public class UserProfile extends AppCompatActivity {
         password_profile = findViewById(R.id.password_profile);
 
 
-        btn_update = findViewById(R.id.btn_update_profile);
+//        btn_update = findViewById(R.id.btn_update_profile);
 
 
 
@@ -126,13 +126,13 @@ public class UserProfile extends AppCompatActivity {
 
 
 
-        btn_update.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(UserProfile.this,update_profile.class);
-                startActivity(intent);
-            }
-        });
+//        btn_update.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(UserProfile.this,update_profile.class);
+//                startActivity(intent);
+//            }
+//        });
 
 
 
