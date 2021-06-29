@@ -99,7 +99,9 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView">
+
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cardWalking"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
@@ -131,6 +133,7 @@
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cardBoating"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
@@ -175,6 +178,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout">
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cardBus"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
@@ -207,6 +211,7 @@
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/card_train"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
@@ -250,6 +255,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cardCycle"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
@@ -282,6 +288,7 @@
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cardAirplane"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
@@ -325,6 +332,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cardHotel"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
@@ -356,6 +364,7 @@
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cardRestaurants"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
@@ -400,6 +409,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cardHospitals"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
@@ -431,6 +441,7 @@
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cardAtm"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
@@ -474,6 +485,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cardBank"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
@@ -505,6 +517,7 @@
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cardHillStations"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
@@ -549,6 +562,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cardFood"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
@@ -580,6 +594,7 @@
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cardMedical"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"

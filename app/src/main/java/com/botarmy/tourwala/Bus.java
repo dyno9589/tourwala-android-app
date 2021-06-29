@@ -6,10 +6,15 @@ import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -17,6 +22,7 @@ import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.botarmy.tourwala.Utility.NetworkChangeListener;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -43,6 +49,7 @@ import java.net.Inet4Address;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 public class Bus extends AppCompatActivity {
 
@@ -55,7 +62,15 @@ public class Bus extends AppCompatActivity {
     SupportMapFragment supportMapFragment;
     GoogleMap map;
     FusedLocationProviderClient fusedLocationProviderClient;
+    Button btnRouteBus;
+    private ConnectivityManager manager;
     double currentLat = 0, currentLong = 0;
+    private NetworkInfo networkInfo;
+    private List<Address> addresses;
+    private String selectedAddress;
+    private Geocoder geocoder;
+    private double selectedLat,selectedLng;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +87,8 @@ public class Bus extends AppCompatActivity {
         btFind = findViewById(R.id.bt_find);
         supportMapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.google_map);
+
+        btnRouteBus = findViewById(R.id.btnRoutebus);
 
 
         //Initialize array of place type
@@ -120,6 +137,19 @@ public class Bus extends AppCompatActivity {
         });
 
 
+        btnRouteBus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = "google.navigation:q="+selectedLat+","+selectedLng+"&mode=d";
+                Intent mapIntent = new Intent("android.intent.action.VIEW", Uri.parse(url));
+                mapIntent.setPackage("com.google.android.apps.maps");
+                if(mapIntent.resolveActivity(getPackageManager()) != null){
+
+                    startActivity(mapIntent);
+                }
+            }
+        });
+
     }
 
     @Override
@@ -159,22 +189,105 @@ public class Bus extends AppCompatActivity {
                     currentLat = location.getLatitude();
                     //Get current longitude
                     currentLong = location.getLongitude();
+
+
+
                     //Sync map
                     supportMapFragment.getMapAsync(new OnMapReadyCallback() {
                         @Override
                         public void onMapReady(@NonNull GoogleMap googleMap) {
                             //When map is ready
                             map = googleMap;
+
+                            LatLng latLng = new LatLng(currentLat,currentLong);
+
+
+                            MarkerOptions markerOptions = new MarkerOptions().position(latLng).title("You are here");
+
                             //Zoom current Location on map
-                            map.animateCamera(CameraUpdateFactory.newLatLngZoom(
+                            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
                                     new LatLng(currentLat,currentLong),17
                             ));
+                            googleMap.addMarker(markerOptions).showInfoWindow();
+                            map.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+                                @Override
+                                public void onMapClick(@NonNull LatLng latLng) {
+                                    CheckConnection();
+
+                                    if(networkInfo.isConnected() && networkInfo.isAvailable()){
+
+                                        selectedLat = latLng.latitude;
+                                        selectedLng = latLng.longitude;
+
+
+                                        GetAddress(selectedLat,selectedLng);
+
+                                        btnRouteBus.setVisibility(View.VISIBLE);
+
+
+
+                                    }else {
+                                        Toast.makeText(Bus.this, "Please Check Connection", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
                         }
                     });
                 }
 
             }
         });
+    }
+
+    private void GetAddress(double mLat, double mLng) {
+        geocoder = new Geocoder(Bus.this, Locale.getDefault());
+
+        if (mLat != 0 ) {
+            try {
+                addresses = geocoder.getFromLocation(mLat, mLng, 1);
+            } catch (IOException e){
+                e.printStackTrace();
+            }
+
+            if (addresses != null){
+                String mAddress = addresses.get(0).getAddressLine(0);
+
+                String city = addresses.get(0).getLocality();
+                String state = addresses.get(0).getAdminArea();
+                String country = addresses.get(0).getCountryName();
+                String postalCode = addresses.get(0).getPostalCode();
+                String knownName = addresses.get(0).getFeatureName();
+                String dis = addresses.get(0).getSubAdminArea();
+
+                selectedAddress = mAddress;
+
+                if(mAddress != null){
+                    MarkerOptions markerOptions = new MarkerOptions();
+
+                    LatLng latLng = new LatLng(mLat,mLng);
+
+
+                    markerOptions.position(latLng).title(selectedAddress);
+
+                    map.addMarker(markerOptions).showInfoWindow();
+                }
+                else{
+                    Toast.makeText(this, "Something went wrong", Toast.LENGTH_SHORT).show();
+                }
+            }
+            else {
+                Toast.makeText(this, "something went wrong", Toast.LENGTH_SHORT).show();
+            }
+
+        }
+        else{
+            Toast.makeText(this, "LatLng null", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void CheckConnection() {
+        manager = (ConnectivityManager) getApplicationContext().getSystemService(CONNECTIVITY_SERVICE);
+        networkInfo  = manager.getActiveNetworkInfo();
     }
 
     @Override

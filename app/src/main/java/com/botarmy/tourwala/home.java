@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -16,6 +17,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,11 +38,13 @@ public class home extends AppCompatActivity implements NavigationView.OnNavigati
     String emailAddress;
     private static final String KEY_EMAIL = "email";
     private static final String KEY_PASSWORD = "password";
-//    DatabaseHelper db = null;
+    //    DatabaseHelper db = null;
 //    TextView textViewWelcome;
     boolean doubleBackToExitPressedOncehome = false;
     TextView email_profile, password_profile;
     SharedPreferences sharedPreferences;
+
+    CardView cWalking, cBoating, cBus, cTrain, cCycle, cAirplane, cHotel, cRestaurant, cHospital, cAtm, cBank, cHillstation, cFood, cMedical;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +53,6 @@ public class home extends AppCompatActivity implements NavigationView.OnNavigati
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_home);
-
-
 
 
         Intent intent = getIntent();
@@ -70,8 +72,137 @@ public class home extends AppCompatActivity implements NavigationView.OnNavigati
         email_profile = findViewById(R.id.email_profile);
         password_profile = findViewById(R.id.password_profile);
 
-        sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
 
+
+        cWalking = findViewById(R.id.cardWalking);
+        cBoating = findViewById(R.id.cardBoating);
+        cBus = findViewById(R.id.cardBus);
+        cTrain = findViewById(R.id.card_train);
+        cCycle = findViewById(R.id.cardCycle);
+        cAirplane = findViewById(R.id.cardAirplane);
+        cHotel = findViewById(R.id.cardHotel);
+        cRestaurant = findViewById(R.id.cardRestaurants);
+        cHospital = findViewById(R.id.cardHospitals);
+        cAtm = findViewById(R.id.cardAtm);
+        cBank = findViewById(R.id.cardBank);
+        cHillstation = findViewById(R.id.cardHillStations);
+        cFood = findViewById(R.id.cardFood);
+        cMedical = findViewById(R.id.cardMedical);
+
+        cWalking.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent towalking = new Intent(home.this,walking.class);
+                startActivity(towalking);
+
+            }
+        });
+
+        cBoating.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent toboating = new Intent(home.this,boating.class);
+                startActivity(toboating);
+            }
+        });
+
+        cBus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent tobus = new Intent(home.this,busbook.class);
+                startActivity(tobus);
+            }
+        });
+
+        cTrain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent totrain = new Intent(home.this,train.class);
+                startActivity(totrain);
+            }
+        });
+
+        cCycle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent tocycle = new Intent(home.this,Cycle.class);
+                startActivity(tocycle);
+            }
+        });
+
+        cAirplane.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent toairplane = new Intent(home.this,planebook.class);
+                startActivity(toairplane);
+            }
+        });
+
+        cHotel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent tohotel = new Intent(home.this,hotel.class);
+                startActivity(tohotel);
+            }
+        });
+
+        cRestaurant.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent torestaurant = new Intent(home.this,restaurant.class);
+                startActivity(torestaurant);
+            }
+        });
+
+        cHospital.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent tohospital = new Intent(home.this,hospital.class);
+                startActivity(tohospital);
+            }
+        });
+
+
+        cAtm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent toatm = new Intent(home.this,atm.class);
+                startActivity(toatm);
+            }
+        });
+
+        cBank.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent tobank = new Intent(home.this,bank.class);
+                startActivity(tobank);
+            }
+        });
+
+        cHillstation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent tohillstation = new Intent(home.this,hillstation.class);
+                startActivity(tohillstation);
+            }
+        });
+
+        cFood.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gotoUrl("https://www.zomato.com");
+            }
+        });
+
+
+        cMedical.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent tomedical = new Intent(home.this,medical.class);
+                startActivity(tomedical);
+            }
+        });
 
 
 //        textView =(TextView) findViewById(R.id.textView);

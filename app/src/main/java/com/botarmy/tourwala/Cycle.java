@@ -189,6 +189,7 @@ public class Cycle extends AppCompatActivity {
 
                     LatLng latLng = new LatLng(mLat,mLng);
 
+
                     markerOptions.position(latLng).title(selectedAddress);
 
                     mMap.addMarker(markerOptions).showInfoWindow();

@@ -18,7 +18,13 @@
         android:roundIcon="@drawable/tour_wala_logo_img"
         android:supportsRtl="true"
         android:theme="@style/Theme.Tourwala">
-        <activity android:name=".update_profile"></activity>
+        <activity android:name=".hillstation"></activity>
+        <activity android:name=".bank" />
+        <activity android:name=".atm" />
+        <activity android:name=".hospital" />
+        <activity android:name=".restaurant" />
+        <activity android:name=".train" />
+        <activity android:name=".update_profile" />
         <activity android:name=".email" />
         <activity android:name=".about" />
         <!--
@@ -31,12 +37,9 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="@string/map_key" />
-
-<!--        <meta-data-->
-<!--            android:name="com.google.android.gms.version"-->
-<!--            android:value="@integer/google_play_services_version" />-->
-
+            android:value="@string/map_key" /> <!-- <meta-data -->
+        <!-- android:name="com.google.android.gms.version" -->
+        <!-- android:value="@integer/google_play_services_version" /> -->
         <activity android:name=".hotelbook" />
         <activity android:name=".planebook" />
         <activity android:name=".boating" />
