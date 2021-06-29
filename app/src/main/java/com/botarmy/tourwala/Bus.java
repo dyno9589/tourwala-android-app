@@ -112,7 +112,7 @@ public class Bus extends AppCompatActivity {
                         "&radius=7000" + //Nearby radius
                         "&types=" + placeTypeList[i] + //Place type
                         "&sensor=true" + //Sensor
-                        "&key=" + getResources().getString(R.string.google_map_key); //Google map key
+                        "&key=" + getResources().getString(R.string.map_key); //Google map key
 
                 //Execute place task  method to download json data
                 new PlaceTask().execute(url);
